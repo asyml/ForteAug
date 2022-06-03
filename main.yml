@@ -1,0 +1,43 @@
+name: Python Build
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.6, 3.7 ]
+        torch-version: [ 1.5.0, 1.6.0 ]
+        tensorflow-version: [ 1.15.0 ]
+        include:
+          - python-version: 3.8
+            torch-version: 1.7.1
+            tensorflow-version: 2.2.0
+          - python-version: 3.8
+            torch-version: 1.8.1
+            tensorflow-version: 2.2.0
+          - python-version: 3.9
+            torch-version: 1.7.1
+            tensorflow-version: 2.5.0
+          - python-version: 3.9
+            torch-version: 1.8.1
+            tensorflow-version: 2.5.0
+        notebook-details:
+          - { dep: "huggingface nltk", extra: "'tensorflow>=2.5.0,<2.8.0,termcolor>=1.1.0'"}
+    steps:
+      - name: Format check with Black
+        run: |
+          black --line-length 80 --check ForteAug/
+      - name: Lint with pylint
+        run: |
+          pylint ForteAug/
+      - name: Lint main code with mypy when torch version is not 1.5.0 and python is 3.9
+        run: |
+          if [[ ${{ matrix.torch-version }} != "1.5.0" && ${{ matrix.python-version }} == "3.9" ]]; then mypy ForteAug; fi
