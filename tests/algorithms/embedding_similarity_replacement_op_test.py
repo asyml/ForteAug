@@ -42,11 +42,11 @@ class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
         file_dir_path = os.path.dirname(__file__)
         vocab_path = "tests/algorithms/sample_embedding.txt.vocab"
         self.abs_vocab_path = os.path.abspath(
-            os.path.join(file_dir_path, *([os.pardir] * 5), vocab_path)
+            os.path.join(file_dir_path, *([os.pardir] * 2), vocab_path)
         )
         embed_path = "tests/algorithms/sample_embedding.txt"
         abs_embed_path = os.path.abspath(
-            os.path.join(file_dir_path, *([os.pardir] * 5), embed_path)
+            os.path.join(file_dir_path, *([os.pardir] * 2), embed_path)
         )
         embed_hparams = Embedding.default_hparams()
         embed_hparams["file"] = abs_embed_path
