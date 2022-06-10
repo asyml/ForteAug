@@ -67,21 +67,18 @@ jobs:
         run: |
           pip install --progress-bar off torch==${{ matrix.torch-version }}
           pip install --progress-bar off tensorflow==${{ matrix.tensorflow-version }}
-      - name: Build ontology
-        run: |
-          ./scripts/build_ontology_specs.sh
-      - name: Lint with flake8
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 ForteAug/ tests/ --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 ForteAug/ tests/ --ignore E203,W503 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Lint with pylint
-        run: |
-          pylint ForteAug/
-      - name: Lint main code with mypy when torch version is not 1.5.0 and python is 3.9
-        run: |
-          if [[ ${{ matrix.torch-version }} != "1.5.0" && ${{ matrix.python-version }} == "3.9" ]]; then mypy ForteAug; fi
+      # - name: Lint with flake8
+      #   run: |
+      #     # stop the build if there are Python syntax errors or undefined names
+      #     flake8 ForteAug/ tests/ --count --select=E9,F63,F7,F82 --show-source --statistics
+      #     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+      #     flake8 ForteAug/ tests/ --ignore E203,W503 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      # - name: Lint with pylint
+      #   run: |
+      #     pylint ForteAug/
+      # - name: Lint main code with mypy when torch version is not 1.5.0 and python is 3.9
+      #   run: |
+      #     if [[ ${{ matrix.torch-version }} != "1.5.0" && ${{ matrix.python-version }} == "3.9" ]]; then mypy ForteAug; fi
       - name: Test with pytest and run coverage
         run: |
           coverage run -m pytest tests
