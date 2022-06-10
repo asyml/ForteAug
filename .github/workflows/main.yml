@@ -56,9 +56,9 @@ jobs:
           python -m pip install ipykernel
           python -m ipykernel install --user
           pip install --progress-bar off asyml-utilities
-      - name: Format check with Black
-        run: |
-          black --line-length 80 --check ForteAug/
+      # - name: Format check with Black
+      #   run: |
+      #     black --line-length 80 --check ForteAug/
 
       - name: Install ForteAug
         run: |
