@@ -55,7 +55,9 @@ class UniformTypoGenerator:
             import requests  # pylint: disable=import-outside-toplevel
         except ImportError as e:
             raise ImportError(
-                create_import_error_msg("requests", "data_aug", "data augment support")
+                create_import_error_msg(
+                    "requests", "data_aug", "data augment support"
+                )
             ) from e
 
         try:
@@ -92,9 +94,13 @@ class TypoReplacementOp(SingleAnnotationAugmentOp):
         if configs["typo_generator"] == "uniform":
             self.typo_generator = UniformTypoGenerator(self.dict_path)
         else:
-            raise ValueError("The valid options for typo_generator are [uniform]")
+            raise ValueError(
+                "The valid options for typo_generator are [uniform]"
+            )
 
-    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
+    def single_annotation_augment(
+        self, input_anno: Annotation
+    ) -> Tuple[bool, str]:
         r"""
         This function replaces a word from a typo dictionary.
 

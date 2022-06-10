@@ -58,10 +58,12 @@ class EmbeddingSimilarityReplacementOp(SingleAnnotationAugmentOp):
         embedding = Embedding(self.vocab.token_to_id_map_py, embed_hparams)
         self.normalized_vectors = (
             embedding.word_vecs
-            / np.sqrt((embedding.word_vecs ** 2).sum(axis=1))[:, np.newaxis]
+            / np.sqrt((embedding.word_vecs**2).sum(axis=1))[:, np.newaxis]
         )
 
-    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
+    def single_annotation_augment(
+        self, input_anno: Annotation
+    ) -> Tuple[bool, str]:
         r"""
         This function replaces a word words with similar
         pretrained embeddings.
