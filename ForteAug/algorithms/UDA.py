@@ -104,20 +104,13 @@ class UDAIterator:
 
     @property
     def num_datasets(self) -> int:
-        return (
-            self._sup_iterator.num_datasets + self._unsup_iterator.num_datasets
-        )
+        return self._sup_iterator.num_datasets + self._unsup_iterator.num_datasets
 
     @property
     def dataset_names(self) -> List[str]:
-        return (
-            self._sup_iterator.dataset_names
-            + self._unsup_iterator.dataset_names
-        )
+        return self._sup_iterator.dataset_names + self._unsup_iterator.dataset_names
 
-    def calculate_uda_loss(
-        self, logits_orig: Tensor, logits_aug: Tensor
-    ) -> Tensor:
+    def calculate_uda_loss(self, logits_orig: Tensor, logits_aug: Tensor) -> Tensor:
         r"""
         This function calculate the KL divergence between the output
         probabilities of original input and augmented input. The two inputs

@@ -81,9 +81,7 @@ class SingleAnnotationAugmentOp(BaseDataAugmentationOp):
         return True
 
     @abstractmethod
-    def single_annotation_augment(
-        self, input_anno: Annotation
-    ) -> Tuple[bool, str]:
+    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
         r"""
         This function takes in one annotation at a time and performs
         the desired augmentation on it. Through this function, one

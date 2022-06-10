@@ -118,9 +118,7 @@ class DataAugProcessor(MultiPackProcessor):
             # The new child entry should be present.
             if child_entry.tid not in self._entry_maps[child_pack_pid]:
                 return False
-            new_child_tid: int = self._entry_maps[child_pack_pid][
-                child_entry.tid
-            ]
+            new_child_tid: int = self._entry_maps[child_pack_pid][child_entry.tid]
             new_child_entry: Entry = new_child_pack.get_entry(new_child_tid)
             new_children.append(new_child_entry)
 
@@ -149,9 +147,7 @@ class DataAugProcessor(MultiPackProcessor):
         self._data_pack_map.clear()
         self._entry_maps.clear()
 
-    def _augment(
-        self, input_pack: MultiPack, aug_pack_names: List[str]
-    ) -> bool:
+    def _augment(self, input_pack: MultiPack, aug_pack_names: List[str]) -> bool:
         r"""
         This function calls the data augmentation ops and
         modifies the input in-place. The subclasses should override
@@ -216,9 +212,7 @@ class DataAugProcessor(MultiPackProcessor):
             )
             data_pack = input_pack.get_pack(aug_pack_name)
 
-            new_packs.append(
-                (new_pack_name, self._new_data_packs[data_pack.pack_id])
-            )
+            new_packs.append((new_pack_name, self._new_data_packs[data_pack.pack_id]))
 
         for new_pack_name, new_pack in new_packs:
             input_pack.add_pack_(new_pack, new_pack_name)

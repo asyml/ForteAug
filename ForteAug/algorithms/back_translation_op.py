@@ -91,9 +91,7 @@ class BackTranslationOp(SingleAnnotationAugmentOp):
         if device not in ("cpu", "cuda"):
             raise ValueError("The device must be 'cpu' or 'cuda'!")
 
-    def single_annotation_augment(
-        self, input_anno: Annotation
-    ) -> Tuple[bool, str]:
+    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
         r"""
         This function replaces a piece of text with back translation.
 

@@ -258,9 +258,7 @@ class TestBaseOp(unittest.TestCase):
 
         boxer_config = {"pack_name": "input"}
 
-        replacer_op = (
-            DummyAugmenter.__module__ + "." + DummyAugmenter.__qualname__
-        )
+        replacer_op = DummyAugmenter.__module__ + "." + DummyAugmenter.__qualname__
 
         processor_config = {
             "data_aug_op": replacer_op,
@@ -452,9 +450,7 @@ class TestBaseOp(unittest.TestCase):
             for i, link in enumerate(new_src_pack.get(Link)):
                 if prev_link:
                     self.assertEqual(link.get_parent().tid, prev_link.tid)
-                    self.assertEqual(
-                        link.get_child().text, expected_links[idx][i]
-                    )
+                    self.assertEqual(link.get_child().text, expected_links[idx][i])
                 prev_link = link
 
             # Test the copied Groups.
@@ -500,9 +496,7 @@ class TestBaseOp(unittest.TestCase):
                 members = mpg.get_members()
                 num_mpg_aug += 1
                 self.assertEqual(members[0].text, members[1].text)
-                self.assertNotEqual(
-                    members[0].pack.pack_id, members[1].pack.pack_id
-                )
+                self.assertNotEqual(members[0].pack.pack_id, members[1].pack.pack_id)
 
             # Test the number of MultiPackLink/MultiPackGroup.
             # Minus the aug and orig counters by 1, because the Document is

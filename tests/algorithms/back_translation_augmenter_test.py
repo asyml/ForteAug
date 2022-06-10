@@ -49,9 +49,7 @@ class TestBackTranslationAugmenter(unittest.TestCase):
         sent = Sentence(data_pack, 0, len(text))
         data_pack.add_entry(sent)
 
-        translated_text = (
-            "The treatment of natural language has never been easier!"
-        )
+        translated_text = "The treatment of natural language has never been easier!"
 
         augmented_data_pack = self.bta.perform_augmentation(data_pack)
         assert translated_text == augmented_data_pack.text

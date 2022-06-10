@@ -61,9 +61,7 @@ class MarianMachineTranslator(MachineTranslator):
     Please refer to their doc for supported languages.
     """
 
-    def __init__(
-        self, src_lang: str = "en", tgt_lang: str = "fr", device: str = "cpu"
-    ):
+    def __init__(self, src_lang: str = "en", tgt_lang: str = "fr", device: str = "cpu"):
         super().__init__(src_lang, tgt_lang, device)
         self.model_name = "Helsinki-NLP/opus-mt-{src}-{tgt}".format(
             src=src_lang, tgt=tgt_lang
@@ -97,7 +95,6 @@ class MarianMachineTranslator(MachineTranslator):
         )
 
         tgt_texts: List[str] = [
-            self.tokenizer.decode(t, skip_special_tokens=True)
-            for t in translated
+            self.tokenizer.decode(t, skip_special_tokens=True) for t in translated
         ]
         return tgt_texts[0]

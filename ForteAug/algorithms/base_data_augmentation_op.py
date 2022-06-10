@@ -156,9 +156,7 @@ class BaseDataAugmentationOp(Configurable):
         for child_entry in children:
             if isinstance(child_entry, (Link, Group)):
                 # Recursively copy the children Links/Groups.
-                if not self._copy_link_or_group(
-                    child_entry, entry_map, new_pack
-                ):
+                if not self._copy_link_or_group(child_entry, entry_map, new_pack):
                     return False
             else:
                 # Children Annotation must have been copied.
@@ -197,9 +195,7 @@ class BaseDataAugmentationOp(Configurable):
         """
         if len(self._replaced_annos[pid]) == 0:
             return False
-        ind: int = (
-            bisect_left(self._replaced_annos[pid], (Span(begin, begin), "")) - 1
-        )
+        ind: int = bisect_left(self._replaced_annos[pid], (Span(begin, begin), "")) - 1
         if ind < 0:
             ind += 1
 
@@ -374,17 +370,13 @@ class BaseDataAugmentationOp(Configurable):
             return index + delta_index
 
         if new_spans[last_span_ind].begin == new_spans[last_span_ind].end and (
-            old_spans[last_span_ind].begin
-            <= index
-            <= old_spans[last_span_ind].end
+            old_spans[last_span_ind].begin <= index <= old_spans[last_span_ind].end
         ):
             return new_spans[last_span_ind].begin
 
         if old_spans[last_span_ind].end <= index:
             # Use the span's end index as anchor, if possible.
-            delta_index = (
-                new_spans[last_span_ind].end - old_spans[last_span_ind].end
-            )
+            delta_index = new_spans[last_span_ind].end - old_spans[last_span_ind].end
         return index + delta_index
 
     def _apply_augmentations(
@@ -465,13 +457,10 @@ class BaseDataAugmentationOp(Configurable):
 
         new_entries: Dict[str, List[Tuple[int, int]]] = {}
         for pos, data in self._inserted_text[pid].items():
-            new_entries[data[1]] = new_entries.get(data[1], []) + [
-                (pos, data[0])
-            ]
+            new_entries[data[1]] = new_entries.get(data[1], []) + [(pos, data[0])]
 
         entries_to_copy: Set[str] = set(
-            list(existing_entries)
-            + [val for val in new_entries if val is not None]
+            list(existing_entries) + [val for val in new_entries if val is not None]
         )
 
         def _insert_new_span(
@@ -535,8 +524,7 @@ class BaseDataAugmentationOp(Configurable):
                 # Dealing with insertion/deletion only for augment_entry.
                 while (
                     insert_ind < len(new_entries[entry_to_copy])
-                    and new_entries[entry_to_copy][insert_ind][0]
-                    <= orig_anno.begin
+                    and new_entries[entry_to_copy][insert_ind][0] <= orig_anno.begin
                 ):
                     # Preserve the order of the spans with merging sort.
                     # It is a 2-way merging from the inserted spans
@@ -559,9 +547,9 @@ class BaseDataAugmentationOp(Configurable):
                 span_new_begin: int = orig_anno.begin
                 span_new_end: int = orig_anno.end
 
-                if (entry_to_copy in new_entries) or self.configs[
-                    "other_entry_policy"
-                ][entry_to_copy] == "auto_align":
+                if (entry_to_copy in new_entries) or self.configs["other_entry_policy"][
+                    entry_to_copy
+                ] == "auto_align":
                     # Only inclusive when the entry is not augmented.
                     # E.g.: A Sentence include the inserted Token on the edge.
                     # E.g.: A Token shouldn't include a nearby inserted Token.
@@ -613,9 +601,7 @@ class BaseDataAugmentationOp(Configurable):
         self._entry_maps[pid] = entry_map
         return new_pack
 
-    def insert_span(
-        self, inserted_text: str, data_pack: DataPack, pos: int
-    ) -> bool:
+    def insert_span(self, inserted_text: str, data_pack: DataPack, pos: int) -> bool:
         r"""
         This is a utility function to insert a new text span to a data pack.
         The inserted span will not have any annotation associated with it.
@@ -717,9 +703,7 @@ class BaseDataAugmentationOp(Configurable):
         self._replaced_annos[pid].add((Span(begin, end), ""))
         return True
 
-    def replace_annotations(
-        self, replacement_anno: Annotation, replaced_text
-    ) -> bool:
+    def replace_annotations(self, replacement_anno: Annotation, replaced_text) -> bool:
         r"""
         This is a utility function to record specifically a replacement
         of the text in an annotation. With this function, the text inside

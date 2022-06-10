@@ -43,9 +43,7 @@ class TestTypoReplacementOp(unittest.TestCase):
         data_pack.add_entry(token_3)
 
         augmented_data_pack = self.tyre.perform_augmentation(data_pack)
-        augmented_tokens = list(
-            augmented_data_pack.get("ft.onto.base_ontology.Token")
-        )
+        augmented_tokens = list(augmented_data_pack.get("ft.onto.base_ontology.Token"))
 
         expected_tokens = [
             ["auxilliary", "auxilary", "auxillary"],

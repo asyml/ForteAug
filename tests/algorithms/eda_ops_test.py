@@ -40,9 +40,7 @@ class TestEDADataAugmentProcessor(unittest.TestCase):
 
         self.nlp.set_reader(reader=StringReader())
         self.nlp.add(component=MultiPackBoxer(), config=boxer_config)
-        self.nlp.add(
-            component=WhiteSpaceTokenizer(), selector=AllPackSelector()
-        )
+        self.nlp.add(component=WhiteSpaceTokenizer(), selector=AllPackSelector())
 
     @data(
         (

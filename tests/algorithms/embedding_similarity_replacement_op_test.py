@@ -40,15 +40,11 @@ from ft.onto.base_ontology import Token
 class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
     def setUp(self):
         file_dir_path = os.path.dirname(__file__)
-        vocab_path = (
-            "tests/algorithms/sample_embedding.txt.vocab"
-        )
+        vocab_path = "tests/algorithms/sample_embedding.txt.vocab"
         self.abs_vocab_path = os.path.abspath(
             os.path.join(file_dir_path, *([os.pardir] * 5), vocab_path)
         )
-        embed_path = (
-            "tests/algorithms/sample_embedding.txt"
-        )
+        embed_path = "tests/algorithms/sample_embedding.txt"
         abs_embed_path = os.path.abspath(
             os.path.join(file_dir_path, *([os.pardir] * 5), embed_path)
         )
@@ -71,12 +67,11 @@ class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
         token_1 = Token(data_pack, 0, 6)
         data_pack.add_entry(token_1)
         augmented_data_pack = self.esa.perform_augmentation(data_pack)
-        augmented_token = list(
-            augmented_data_pack.get("ft.onto.base_ontology.Token")
-        )[0]
+        augmented_token = list(augmented_data_pack.get("ft.onto.base_ontology.Token"))[
+            0
+        ]
         self.assertIn(
-            augmented_token.text,
-            ["yahoo", "aol", "microsoft", "web", "internet"]
+            augmented_token.text, ["yahoo", "aol", "microsoft", "web", "internet"]
         )
 
     @data(
@@ -111,9 +106,7 @@ class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
             },
             "augment_pack_names": {"input": "augmented_input"},
         }
-        nlp.add(
-            component=(DataAugProcessor()), config=processor_config
-        )
+        nlp.add(component=(DataAugProcessor()), config=processor_config)
         nlp.initialize()
 
         for idx, m_pack in enumerate(nlp.process_dataset(texts)):

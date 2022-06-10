@@ -81,8 +81,7 @@ class DictionaryReplacementOp(SingleAnnotationAugmentOp):
         """
 
         dict_name = (
-            "forte.processors.data_augment."
-            "algorithms.dictionary.WordnetDictionary"
+            "forte.processors.data_augment." "algorithms.dictionary.WordnetDictionary"
         )
         return {
             "dictionary_class": dict_name,

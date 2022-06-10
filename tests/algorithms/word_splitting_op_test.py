@@ -44,9 +44,7 @@ class EntityMentionInserter(PackProcessor):
 
         input_text = input_pack.text
         if not all(bool(entity in input_text) for entity in entity_text):
-            raise Exception(
-                "Entities to be added are not valid for the input text."
-            )
+            raise Exception("Entities to be added are not valid for the input text.")
         for entity in entity_text:
             start = input_text.index(entity)
             end = start + len(entity)
@@ -80,9 +78,7 @@ class TestWordSplittingProcessor(unittest.TestCase):
         self.nlp.add(component=EntityMentionInserter(), config=entity_config)
         self.nlp.add(PeriodSentenceSplitter())
         self.nlp.add(component=MultiPackBoxer(), config=boxer_config)
-        self.nlp.add(
-            component=WhiteSpaceTokenizer(), selector=AllPackSelector()
-        )
+        self.nlp.add(component=WhiteSpaceTokenizer(), selector=AllPackSelector())
 
     @data(
         (

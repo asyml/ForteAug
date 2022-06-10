@@ -47,9 +47,7 @@ class UDATest(unittest.TestCase):
 
         self.train_path = "{}/train.pkl".format(self.pickle_data_dir.name)
         self.test_path = "{}/predict.pkl".format(self.pickle_data_dir.name)
-        self.unsup_path = "{}/unsupervised.pkl".format(
-            self.pickle_data_dir.name
-        )
+        self.unsup_path = "{}/unsupervised.pkl".format(self.pickle_data_dir.name)
 
         self.train_hparam = {
             "allow_smaller_final_batch": False,
