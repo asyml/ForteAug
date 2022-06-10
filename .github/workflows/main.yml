@@ -60,9 +60,9 @@ jobs:
       #   run: |
       #     black --line-length 80 --check ForteAug/
 
-      - name: Install ForteAug
+      - name: Install Forte
         run: |
-          pip install --progress-bar off .[data_aug,ir,remote,audio_ext,stave,models,test,wikipedia,nlp,extractor]
+          pip install --progress-bar off Forte
       - name: Install deep learning frameworks
         run: |
           pip install --progress-bar off torch==${{ matrix.torch-version }}
