@@ -61,7 +61,9 @@ class EmbeddingSimilarityReplacementOp(SingleAnnotationAugmentOp):
             / np.sqrt((embedding.word_vecs ** 2).sum(axis=1))[:, np.newaxis]
         )
 
-    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
+    def single_annotation_augment(
+        self, input_anno: Annotation
+    ) -> Tuple[bool, str]:
         r"""
         This function replaces a word words with similar
         pretrained embeddings.

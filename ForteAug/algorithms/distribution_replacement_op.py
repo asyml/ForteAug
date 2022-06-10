@@ -40,7 +40,9 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
         self.configs = self.make_configs(configs)
         self.cofigure_sampler()
 
-    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
+    def single_annotation_augment(
+        self, input_anno: Annotation
+    ) -> Tuple[bool, str]:
         r"""
         This function replaces a word by sampling from a distribution.
 
@@ -67,7 +69,9 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
             import requests  # pylint: disable=import-outside-toplevel
         except ImportError as e:
             raise ImportError(
-                create_import_error_msg("requests", "data_aug", "data augment support")
+                create_import_error_msg(
+                    "requests", "data_aug", "data augment support"
+                )
             ) from e
 
         try:

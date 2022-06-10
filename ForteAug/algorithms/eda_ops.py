@@ -309,12 +309,16 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
 
         replacement_op = create_class_with_kwargs(
             self.configs["insertion_op_configs"]["type"],
-            class_args={"configs": self.configs["insertion_op_configs"]["kwargs"]},
+            class_args={
+                "configs": self.configs["insertion_op_configs"]["kwargs"]
+            },
         )
 
         annotations: List[Annotation] = []
         pos = [0]
-        annos: Iterable[Annotation] = data_pack.get(self.configs["augment_entry"])
+        annos: Iterable[Annotation] = data_pack.get(
+            self.configs["augment_entry"]
+        )
         for anno in annos:
             if anno.text not in self.stopwords:
                 annotations.append(anno)
