@@ -25,7 +25,7 @@ from typing import List, Dict, Iterable, Union, Any
 from forte.common.configuration import Config
 from forte.data.data_pack import DataPack
 from forte.data.ontology import Annotation
-from forte.processors.data_augment.algorithms.base_data_augmentation_op import (
+from ForteAug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 from forte.utils.utils import get_class, create_class_with_kwargs
@@ -309,16 +309,12 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
 
         replacement_op = create_class_with_kwargs(
             self.configs["insertion_op_configs"]["type"],
-            class_args={
-                "configs": self.configs["insertion_op_configs"]["kwargs"]
-            },
+            class_args={"configs": self.configs["insertion_op_configs"]["kwargs"]},
         )
 
         annotations: List[Annotation] = []
         pos = [0]
-        annos: Iterable[Annotation] = data_pack.get(
-            self.configs["augment_entry"]
-        )
+        annos: Iterable[Annotation] = data_pack.get(self.configs["augment_entry"])
         for anno in annos:
             if anno.text not in self.stopwords:
                 annotations.append(anno)
@@ -390,12 +386,11 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
             .. code-block:: python
 
                 {
-                    "type": "forte.processors.data_augment.algorithms."
+                    "type": "ForteAug.algorithms."
                     "dictionary_replacement_op.DictionaryReplacementOp",
                     "kwargs":{
                         "dictionary_class": (
-                            "forte.processors.data_augment."
-                            "algorithms.dictionary.WordnetDictionary"
+                            "ForteAug.algorithms.dictionary.WordnetDictionary"
                         ),
                         "prob": 1.0,
                         "lang": "eng",
@@ -414,12 +409,11 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
                 "ft.onto.base_ontology.Sentence": "auto_align",
             },
             "insertion_op_configs": {
-                "type": "forte.processors.data_augment.algorithms."
+                "type": "ForteAug.algorithms."
                 "dictionary_replacement_op.DictionaryReplacementOp",
                 "kwargs": {
                     "dictionary_class": (
-                        "forte.processors.data_augment."
-                        "algorithms.dictionary.WordnetDictionary"
+                        "ForteAug.algorithms.dictionary.WordnetDictionary"
                     ),
                     "prob": 1.0,
                     "lang": "eng",

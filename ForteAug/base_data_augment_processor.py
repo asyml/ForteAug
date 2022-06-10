@@ -38,7 +38,7 @@ from forte.data.ontology.top import (
 )
 from forte.data.span import Span
 from forte.processors.base import MultiPackProcessor
-from forte.processors.data_augment.algorithms.text_replacement_op import (
+from ForteAug.algorithms.text_replacement_op import (
     TextReplacementOp,
 )
 from forte.utils.utils import get_class, create_class_with_kwargs
@@ -155,10 +155,7 @@ def modify_index(
             if is_begin:
                 # When inclusive, move the begin index
                 # to the left to include the inserted span.
-                if (
-                    last_span_ind > 0
-                    and old_spans[last_span_ind - 1].begin == index
-                ):
+                if last_span_ind > 0 and old_spans[last_span_ind - 1].begin == index:
                     # Old spans: [0, 1], [1, 1], [1, 3]
                     # Target index: 1
                     # Change last_span_index from 2 to 1
@@ -175,10 +172,7 @@ def modify_index(
             if not is_begin:
                 # When exclusive, move the end index
                 # to the left to exclude the inserted span.
-                if (
-                    last_span_ind > 0
-                    and old_spans[last_span_ind - 1].begin == index
-                ):
+                if last_span_ind > 0 and old_spans[last_span_ind - 1].begin == index:
                     # Old spans: [0, 1], [1, 1], [1, 3]
                     # Target index: 1
                     # Change last_span_index from 2 to 0
@@ -199,9 +193,7 @@ def modify_index(
         return index
     # Find the nearest anchor point on the left of current index.
     # Start from the span's begin index.
-    delta_index: int = (
-        new_spans[last_span_ind].begin - old_spans[last_span_ind].begin
-    )
+    delta_index: int = new_spans[last_span_ind].begin - old_spans[last_span_ind].begin
 
     if (
         old_spans[last_span_ind].begin == old_spans[last_span_ind].end
@@ -213,9 +205,7 @@ def modify_index(
 
     if old_spans[last_span_ind].end <= index:
         # Use the span's end index as anchor, if possible.
-        delta_index = (
-            new_spans[last_span_ind].end - old_spans[last_span_ind].end
-        )
+        delta_index = new_spans[last_span_ind].end - old_spans[last_span_ind].end
     return index + delta_index
 
 
@@ -294,9 +284,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
         """
         if len(self._replaced_annos[pid]) == 0:
             return False
-        ind: int = (
-            bisect_left(self._replaced_annos[pid], (Span(begin, begin), "")) - 1
-        )
+        ind: int = bisect_left(self._replaced_annos[pid], (Span(begin, begin), "")) - 1
 
         if ind < 0:
             ind += 1
@@ -338,9 +326,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
             return True
         return False
 
-    def _insert(
-        self, inserted_text: str, data_pack: DataPack, pos: int
-    ) -> bool:
+    def _insert(self, inserted_text: str, data_pack: DataPack, pos: int) -> bool:
         r"""
         This is a wrapper function to insert a new annotation. After
         getting the inserted text, it will register the input & output
@@ -537,9 +523,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
                     # Only inclusive when the entry is not augmented.
                     # E.g.: A Sentence include the inserted Token on the edge.
                     # E.g.: A Token shouldn't include a nearby inserted Token.
-                    is_inclusive = (
-                        entry_to_copy != self.configs["augment_entry"]
-                    )
+                    is_inclusive = entry_to_copy != self.configs["augment_entry"]
                     span_new_begin = modify_index(
                         orig_anno.begin, spans, new_spans, True, is_inclusive
                     )
@@ -630,9 +614,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
         for child_entry in children:
             if isinstance(child_entry, (Link, Group)):
                 # Recursively copy the children Links/Groups.
-                if not self._copy_link_or_group(
-                    child_entry, entry_map, new_pack
-                ):
+                if not self._copy_link_or_group(child_entry, entry_map, new_pack):
                     return False
             else:
                 # Children Annotation must have been copied.
@@ -695,9 +677,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
             # The new child entry should be present.
             if child_entry.tid not in self._entry_maps[child_pack_pid]:
                 return False
-            new_child_tid: int = self._entry_maps[child_pack_pid][
-                child_entry.tid
-            ]
+            new_child_tid: int = self._entry_maps[child_pack_pid][child_entry.tid]
             new_child_entry: Entry = new_child_pack.get_entry(new_child_tid)
             new_children.append(new_child_entry)
 
@@ -816,8 +796,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
                 The data augmentation Op for the processor.
                 It should be a full qualified class name.
                 Example:
-                    "forte.processors.data_augment.algorithms.
-                    text_replacement_op.TextReplacementOp"
+                    "ForteAug.algorithms.text_replacement_op.TextReplacementOp"
             - data_aug_op_config:
                 The configuration for data augmentation Op.
                 Example:

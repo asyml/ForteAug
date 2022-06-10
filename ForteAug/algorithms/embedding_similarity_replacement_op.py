@@ -19,7 +19,7 @@ import numpy as np
 from ft.onto.base_ontology import Annotation
 from forte.utils import create_import_error_msg
 from forte.common.configuration import Config
-from forte.processors.data_augment.algorithms.single_annotation_op import (
+from ForteAug.algorithms.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 
@@ -61,9 +61,7 @@ class EmbeddingSimilarityReplacementOp(SingleAnnotationAugmentOp):
             / np.sqrt((embedding.word_vecs ** 2).sum(axis=1))[:, np.newaxis]
         )
 
-    def single_annotation_augment(
-        self, input_anno: Annotation
-    ) -> Tuple[bool, str]:
+    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
         r"""
         This function replaces a word words with similar
         pretrained embeddings.

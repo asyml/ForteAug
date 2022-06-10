@@ -19,7 +19,7 @@ from typing import Tuple, Any, Dict, Union
 
 from forte.data.ontology import Annotation
 from forte.common.configuration import Config
-from forte.processors.data_augment.algorithms.single_annotation_op import (
+from ForteAug.algorithms.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 from forte.utils import create_import_error_msg
@@ -50,9 +50,7 @@ class CharacterFlipOp(SingleAnnotationAugmentOp):
             import requests  # pylint: disable=import-outside-toplevel
         except ImportError as e:
             raise ImportError(
-                create_import_error_msg(
-                    "requests", "data_aug", "data augment support"
-                )
+                create_import_error_msg("requests", "data_aug", "data augment support")
             ) from e
         super().__init__(configs)
 
@@ -79,9 +77,7 @@ class CharacterFlipOp(SingleAnnotationAugmentOp):
         else:
             return char
 
-    def single_annotation_augment(
-        self, input_anno: Annotation
-    ) -> Tuple[bool, str]:
+    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
         r"""
         Takes in the annotated string and performs the character
         flip operation on it that randomly augments few characters

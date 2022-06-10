@@ -19,7 +19,7 @@ import random
 from typing import Any, Dict, Tuple
 
 from forte.data.ontology import Annotation
-from forte.processors.data_augment.algorithms.single_annotation_op import (
+from ForteAug.algorithms.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 from forte.common.configuration import Config
@@ -91,9 +91,7 @@ class BackTranslationOp(SingleAnnotationAugmentOp):
         if device not in ("cpu", "cuda"):
             raise ValueError("The device must be 'cpu' or 'cuda'!")
 
-    def single_annotation_augment(
-        self, input_anno: Annotation
-    ) -> Tuple[bool, str]:
+    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
         r"""
         This function replaces a piece of text with back translation.
 
@@ -147,8 +145,7 @@ class BackTranslationOp(SingleAnnotationAugmentOp):
                 value is cpu.
         """
         model_class_name = (
-            "forte.processors.data_augment.algorithms."
-            "machine_translator.MarianMachineTranslator"
+            "ForteAug.algorithms.machine_translator.MarianMachineTranslator"
         )
         return {
             "augment_entry": "ft.onto.base_ontology.Sentence",

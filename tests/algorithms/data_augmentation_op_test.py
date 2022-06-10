@@ -33,10 +33,10 @@ from forte.data.readers import MultiPackSentenceReader, StringReader
 from forte.data.caster import MultiPackBoxer
 from forte.processors.misc import WhiteSpaceTokenizer
 from forte.data.selector import AllPackSelector
-from forte.processors.data_augment.data_aug_processor import (
+from ForteAug.data_aug_processor import (
     DataAugProcessor,
 )
-from forte.processors.data_augment.algorithms.base_data_augmentation_op import (
+from ForteAug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 from ddt import ddt, data, unpack

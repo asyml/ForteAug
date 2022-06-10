@@ -18,7 +18,7 @@ import tempfile
 import unittest
 import torch
 import texar.torch as tx
-from forte.processors.data_augment.algorithms.UDA import UDAIterator
+from ForteAug.algorithms.UDA import UDAIterator
 from texar.torch.utils.shapes import get_rank
 
 

@@ -26,10 +26,10 @@ from forte.data.multi_pack import MultiPack
 from forte.data.readers import StringReader
 from forte.data.selector import AllPackSelector
 from forte.pipeline import Pipeline
-from forte.processors.data_augment.data_aug_processor import (
+from ForteAug.data_aug_processor import (
     DataAugProcessor,
 )
-from forte.processors.data_augment.algorithms.embedding_similarity_replacement_op import (
+from ForteAug.algorithms.embedding_similarity_replacement_op import (
     EmbeddingSimilarityReplacementOp,
 )
 from forte.processors.misc import WhiteSpaceTokenizer
@@ -71,7 +71,8 @@ class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
             0
         ]
         self.assertIn(
-            augmented_token.text, ["yahoo", "aol", "microsoft", "web", "internet"]
+            augmented_token.text,
+            ["yahoo", "aol", "microsoft", "web", "internet"],
         )
 
     @data(
@@ -91,7 +92,7 @@ class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
         nlp.add(component=WhiteSpaceTokenizer(), selector=AllPackSelector())
 
         processor_config = {
-            "data_aug_op": "forte.processors.data_augment.algorithms"
+            "data_aug_op": "ForteAug.algorithms"
             ".embedding_similarity_replacement_op."
             "EmbeddingSimilarityReplacementOp",
             "data_aug_op_config": {

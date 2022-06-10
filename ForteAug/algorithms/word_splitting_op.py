@@ -26,7 +26,7 @@ from typing import List, Iterable
 
 from forte.data.data_pack import DataPack
 from forte.data.ontology import Annotation
-from forte.processors.data_augment.algorithms.base_data_augmentation_op import (
+from ForteAug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 from forte.utils.utils import get_class

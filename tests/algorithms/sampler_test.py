@@ -16,7 +16,7 @@ Unit tests for distribution sampler.
 """
 import unittest
 
-from forte.processors.data_augment.algorithms.sampler import (
+from ForteAug.algorithms.sampler import (
     UniformSampler,
     UnigramSampler,
 )

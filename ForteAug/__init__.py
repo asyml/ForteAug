@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from forte.processors.data_augment.base_data_augment_processor import *
+from ForteAug.base_data_augment_processor import *

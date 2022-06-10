@@ -12,7 +12,7 @@ three types of operation and track them to update the other relevant entries (e.
 update the dependency link after swapping a word).
 
 Based on this processor, we can plugin a few based algorithms (named Replacment Op),
-which are implemented in the `forte.processors.data_augment.algorithms` package.
+which are implemented in the `ForteAug.algorithms` package.
 
 ### Dictionary Replacement Op
 
@@ -52,7 +52,7 @@ The Easy Data Augmentation (EDA) is a set of simple random text transformations,
 are supported by the Replacement Ops mentioned above. The original EDA paper proposes 4
 different operations: Synonym Replacement (SR), Random Insertion (RI), Random Swap (RS)
 and Random Deletion (RD). They are implemented as Processors in
-`forte.processors.data_augment.algorithms.eda_processors`.
+`ForteAug.algorithms.eda_processors`.
 
 References:
 
@@ -67,7 +67,7 @@ arXiv:1901.11196, 2019.
 The Unsupervised Data Augmentation(UDA) can utilize unsupervised data and incorporate
 the unsupervised loss function into supervised loss. We wrap the UDA consistency loss
 and implement a UDA based data iterator at
-`forte.processors.data_augment.algorithms.UDAIterator`
+`ForteAug.algorithms.UDAIterator`
 
 References:
 

@@ -29,7 +29,7 @@ from forte.data.ontology.top import (
 )
 from forte.processors.base import MultiPackProcessor
 from forte.utils.utils import create_class_with_kwargs
-from forte.processors.data_augment.algorithms.base_data_augmentation_op import (
+from ForteAug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 
@@ -118,9 +118,7 @@ class DataAugProcessor(MultiPackProcessor):
             # The new child entry should be present.
             if child_entry.tid not in self._entry_maps[child_pack_pid]:
                 return False
-            new_child_tid: int = self._entry_maps[child_pack_pid][
-                child_entry.tid
-            ]
+            new_child_tid: int = self._entry_maps[child_pack_pid][child_entry.tid]
             new_child_entry: Entry = new_child_pack.get_entry(new_child_tid)
             new_children.append(new_child_entry)
 
@@ -149,9 +147,7 @@ class DataAugProcessor(MultiPackProcessor):
         self._data_pack_map.clear()
         self._entry_maps.clear()
 
-    def _augment(
-        self, input_pack: MultiPack, aug_pack_names: List[str]
-    ) -> bool:
+    def _augment(self, input_pack: MultiPack, aug_pack_names: List[str]) -> bool:
         r"""
         This function calls the data augmentation ops and
         modifies the input in-place. The subclasses should override
@@ -216,9 +212,7 @@ class DataAugProcessor(MultiPackProcessor):
             )
             data_pack = input_pack.get_pack(aug_pack_name)
 
-            new_packs.append(
-                (new_pack_name, self._new_data_packs[data_pack.pack_id])
-            )
+            new_packs.append((new_pack_name, self._new_data_packs[data_pack.pack_id]))
 
         for new_pack_name, new_pack in new_packs:
             input_pack.add_pack_(new_pack, new_pack_name)
@@ -243,8 +237,7 @@ class DataAugProcessor(MultiPackProcessor):
                 The data augmentation Op for the processor.
                 It should be a full qualified class name.
                 Example:
-                    "forte.processors.data_augment.algorithms.
-                    text_replacement_op.TextReplacementOp"
+                    "ForteAug.algorithms.text_replacement_op.TextReplacementOp"
             - data_aug_op_config:
                 The configuration for data augmentation Op.
                 Example:

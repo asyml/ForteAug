@@ -19,7 +19,7 @@ import unittest
 import random
 from ft.onto.base_ontology import Sentence
 from forte.data.data_pack import DataPack
-from forte.processors.data_augment.algorithms.back_translation_op import (
+from ForteAug.algorithms.back_translation_op import (
     BackTranslationOp,
 )
 
@@ -27,8 +27,7 @@ from forte.processors.data_augment.algorithms.back_translation_op import (
 class TestBackTranslationAugmenter(unittest.TestCase):
     def setUp(self):
         model_class_name = (
-            "forte.processors.data_augment.algorithms."
-            "machine_translator.MarianMachineTranslator"
+            "ForteAug.algorithms." "machine_translator.MarianMachineTranslator"
         )
         self.bta = BackTranslationOp(
             configs={

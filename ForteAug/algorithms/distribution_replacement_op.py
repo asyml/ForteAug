@@ -18,7 +18,7 @@ from typing import Tuple, Union, Dict, Any
 from forte.common.configurable import Configurable
 from forte.common.configuration import Config
 from forte.data.ontology import Annotation
-from forte.processors.data_augment.algorithms.single_annotation_op import (
+from ForteAug.algorithms.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 from forte.utils.utils import create_class_with_kwargs
@@ -40,9 +40,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
         self.configs = self.make_configs(configs)
         self.cofigure_sampler()
 
-    def single_annotation_augment(
-        self, input_anno: Annotation
-    ) -> Tuple[bool, str]:
+    def single_annotation_augment(self, input_anno: Annotation) -> Tuple[bool, str]:
         r"""
         This function replaces a word by sampling from a distribution.
 
@@ -69,9 +67,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
             import requests  # pylint: disable=import-outside-toplevel
         except ImportError as e:
             raise ImportError(
-                create_import_error_msg(
-                    "requests", "data_aug", "data augment support"
-                )
+                create_import_error_msg("requests", "data_aug", "data augment support")
             ) from e
 
         try:
@@ -141,7 +137,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
                 .. code-block:: python
 
                     {
-                        "type": "forte.processors.data_augment.algorithms.sampler.UniformSampler",
+                        "type": "ForteAug.algorithms.sampler.UniformSampler",
                         "kwargs":{
                             "sample": ["apple", "banana", "orange"]
                         }
@@ -150,7 +146,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
         return {
             "prob": 0.1,
             "sampler_config": {
-                "type": "forte.processors.data_augment.algorithms.sampler.UniformSampler",
+                "type": "ForteAug.algorithms.sampler.UniformSampler",
                 "kwargs": {"sampler_data": []}
                 # "sampler_data": [],
             },
