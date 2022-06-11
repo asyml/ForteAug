@@ -76,8 +76,6 @@ jobs:
       - name: Upgrade protobuf
         run: |
           pip install --upgrade protobuf==3.20.0
-        run: |
-          pylint fortex/
       # - name: Lint with flake8
       #   run: |
       #     # stop the build if there are Python syntax errors or undefined names
