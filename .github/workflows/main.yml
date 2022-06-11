@@ -73,6 +73,11 @@ jobs:
       - name: Install Texar
         run: |
           pip install --progress-bar off texar-pytorch
+      - name: Upgrade protobuf
+        run: |
+          pip install --upgrade protobuf==3.20.0
+        run: |
+          pylint fortex/
       # - name: Lint with flake8
       #   run: |
       #     # stop the build if there are Python syntax errors or undefined names
@@ -85,6 +90,7 @@ jobs:
       # - name: Lint main code with mypy when torch version is not 1.5.0 and python is 3.9
       #   run: |
       #     if [[ ${{ matrix.torch-version }} != "1.5.0" && ${{ matrix.python-version }} == "3.9" ]]; then mypy fortex; fi
+
       - name: Test with pytest and run coverage
         run: |
           coverage run -m pytest tests
