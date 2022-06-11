@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ForteAug.algorithms.distribution_replacement_op import *
+from fortex.forteaug.algorithms.distribution_replacement_op import *

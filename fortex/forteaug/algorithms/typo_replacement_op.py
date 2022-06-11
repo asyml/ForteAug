@@ -17,13 +17,13 @@ import random
 import json
 from typing import Tuple, Union, Dict, Any
 
-
-from forte.data.ontology import Annotation
-from ForteAug.algorithms.single_annotation_op import (
-    SingleAnnotationAugmentOp,
-)
 from forte.common.configuration import Config
 from forte.utils import create_import_error_msg
+from forte.data.ontology import Annotation
+from fortex.forteaug.algorithms.single_annotation_op import (
+    SingleAnnotationAugmentOp,
+)
+
 
 __all__ = [
     "UniformTypoGenerator",

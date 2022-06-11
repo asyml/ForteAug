@@ -29,7 +29,7 @@ from forte.data.ontology.top import (
 )
 from forte.processors.base import MultiPackProcessor
 from forte.utils.utils import create_class_with_kwargs
-from ForteAug.algorithms.base_data_augmentation_op import (
+from fortex.forteaug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 
@@ -243,7 +243,7 @@ class DataAugProcessor(MultiPackProcessor):
                 The data augmentation Op for the processor.
                 It should be a full qualified class name.
                 Example:
-                    "ForteAug.algorithms.text_replacement_op.TextReplacementOp"
+                    "fortex.forteaug.algorithms.text_replacement_op.TextReplacementOp"
             - data_aug_op_config:
                 The configuration for data augmentation Op.
                 Example:

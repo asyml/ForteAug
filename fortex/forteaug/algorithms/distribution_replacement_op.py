@@ -18,11 +18,11 @@ from typing import Tuple, Union, Dict, Any
 from forte.common.configurable import Configurable
 from forte.common.configuration import Config
 from forte.data.ontology import Annotation
-from ForteAug.algorithms.single_annotation_op import (
-    SingleAnnotationAugmentOp,
-)
 from forte.utils.utils import create_class_with_kwargs
 from forte.utils import create_import_error_msg
+from fortex.forteaug.algorithms.single_annotation_op import (
+    SingleAnnotationAugmentOp,
+)
 
 __all__ = [
     "DistributionReplacementOp",
@@ -141,7 +141,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
                 .. code-block:: python
 
                     {
-                        "type": "ForteAug.algorithms.sampler.UniformSampler",
+                        "type": "fortex.forteaug.algorithms.sampler.UniformSampler",
                         "kwargs":{
                             "sample": ["apple", "banana", "orange"]
                         }
@@ -150,7 +150,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
         return {
             "prob": 0.1,
             "sampler_config": {
-                "type": "ForteAug.algorithms.sampler.UniformSampler",
+                "type": "fortex.forteaug.algorithms.sampler.UniformSampler",
                 "kwargs": {"sampler_data": []}
                 # "sampler_data": [],
             },

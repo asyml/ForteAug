@@ -19,11 +19,11 @@ import random
 from typing import Any, Dict, Tuple
 
 from forte.data.ontology import Annotation
-from ForteAug.algorithms.single_annotation_op import (
-    SingleAnnotationAugmentOp,
-)
 from forte.common.configuration import Config
 from forte.utils.utils import create_class_with_kwargs
+from fortex.forteaug.algorithms.single_annotation_op import (
+    SingleAnnotationAugmentOp,
+)
 
 __all__ = [
     "BackTranslationOp",
@@ -146,9 +146,7 @@ class BackTranslationOp(SingleAnnotationAugmentOp):
                 "cpu" for the CPU or "cuda" for GPU. The Default
                 value is cpu.
         """
-        model_class_name = (
-            "ForteAug.algorithms.machine_translator.MarianMachineTranslator"
-        )
+        model_class_name = "fortex.forteaug.algorithms.machine_translator.MarianMachineTranslator"
         return {
             "augment_entry": "ft.onto.base_ontology.Sentence",
             "prob": 0.5,

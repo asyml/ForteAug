@@ -38,10 +38,10 @@ from forte.data.ontology.top import (
 )
 from forte.data.span import Span
 from forte.processors.base import MultiPackProcessor
-from ForteAug.algorithms.text_replacement_op import (
+from forte.utils.utils import get_class, create_class_with_kwargs
+from fortex.forteaug.algorithms.text_replacement_op import (
     TextReplacementOp,
 )
-from forte.utils.utils import get_class, create_class_with_kwargs
 
 __all__ = ["BaseDataAugmentProcessor", "ReplacementDataAugmentProcessor"]
 
@@ -816,7 +816,7 @@ class ReplacementDataAugmentProcessor(BaseDataAugmentProcessor):
                 The data augmentation Op for the processor.
                 It should be a full qualified class name.
                 Example:
-                    "ForteAug.algorithms.text_replacement_op.TextReplacementOp"
+                    "fortex.forteaug.algorithms.text_replacement_op.TextReplacementOp"
             - data_aug_op_config:
                 The configuration for data augmentation Op.
                 Example:

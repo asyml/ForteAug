@@ -16,7 +16,7 @@ Unit tests for dictionary word replacement op.
 """
 
 import unittest
-from ForteAug.algorithms.dictionary_replacement_op import (
+from fortex.forteaug.algorithms.dictionary_replacement_op import (
     DictionaryReplacementOp,
 )
 
@@ -26,7 +26,7 @@ from forte.data.data_pack import DataPack
 
 class TestDictionaryReplacementOp(unittest.TestCase):
     def setUp(self):
-        dict_name = "ForteAug.algorithms.dictionary.WordnetDictionary"
+        dict_name = "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
         self.dra = DictionaryReplacementOp(
             configs={
                 "dictionary_class": dict_name,

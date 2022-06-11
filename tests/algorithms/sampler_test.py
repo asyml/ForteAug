@@ -16,7 +16,7 @@ Unit tests for distribution sampler.
 """
 import unittest
 
-from ForteAug.algorithms.sampler import (
+from fortex.forteaug.algorithms.sampler import (
     UniformSampler,
     UnigramSampler,
 )

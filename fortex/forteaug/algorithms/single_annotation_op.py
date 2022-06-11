@@ -30,7 +30,7 @@ from abc import abstractmethod
 from forte.data.data_pack import DataPack
 from forte.data.ontology.top import Annotation
 from forte.utils.utils import get_class
-from ForteAug.algorithms.base_data_augmentation_op import (
+from fortex.forteaug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 

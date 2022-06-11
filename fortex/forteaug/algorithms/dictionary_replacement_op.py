@@ -15,16 +15,15 @@ import random
 from typing import Tuple, Union, Dict, Any
 
 from forte.common.configuration import Config
-from ForteAug.algorithms.single_annotation_op import (
+from forte.utils.utils import create_class_with_kwargs
+from ft.onto.base_ontology import Token
+from fortex.forteaug.algorithms.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
-from forte.utils.utils import create_class_with_kwargs
 
 __all__ = [
     "DictionaryReplacementOp",
 ]
-
-from ft.onto.base_ontology import Token
 
 
 class DictionaryReplacementOp(SingleAnnotationAugmentOp):
@@ -80,7 +79,7 @@ class DictionaryReplacementOp(SingleAnnotationAugmentOp):
                 The language of the text.
         """
 
-        dict_name = "ForteAug.algorithms.dictionary.WordnetDictionary"
+        dict_name = "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
         return {
             "dictionary_class": dict_name,
             "prob": 0.5,

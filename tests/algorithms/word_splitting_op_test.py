@@ -26,7 +26,7 @@ from forte.data.multi_pack import MultiPack, DataPack
 from forte.data.readers import StringReader
 from forte.data.caster import MultiPackBoxer
 from forte.processors.misc import PeriodSentenceSplitter
-from ForteAug.data_aug_processor import DataAugProcessor
+from fortex.forteaug.data_aug_processor import DataAugProcessor
 from forte.processors.base import PackProcessor
 from forte.processors.misc import WhiteSpaceTokenizer
 
@@ -133,7 +133,7 @@ class TestWordSplittingProcessor(unittest.TestCase):
         new_entities,
     ):
         entity_config = {
-            "data_aug_op": "ForteAug.algorithms.word_splitting_op.RandomWordSplitDataAugmentOp",
+            "data_aug_op": "fortex.forteaug.algorithms.word_splitting_op.RandomWordSplitDataAugmentOp",
             "data_aug_op_config": {
                 "other_entry_policy": {
                     "ft.onto.base_ontology.EntityMention": "auto_align"

@@ -19,10 +19,10 @@ from typing import Tuple, Any, Dict, Union
 
 from forte.data.ontology import Annotation
 from forte.common.configuration import Config
-from ForteAug.algorithms.single_annotation_op import (
+from forte.utils import create_import_error_msg
+from fortex.forteaug.algorithms.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
-from forte.utils import create_import_error_msg
 
 __all__ = ["CharacterFlipOp"]
 

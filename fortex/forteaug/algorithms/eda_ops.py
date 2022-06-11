@@ -25,10 +25,10 @@ from typing import List, Dict, Iterable, Union, Any
 from forte.common.configuration import Config
 from forte.data.data_pack import DataPack
 from forte.data.ontology import Annotation
-from ForteAug.algorithms.base_data_augmentation_op import (
+from forte.utils.utils import get_class, create_class_with_kwargs
+from fortex.forteaug.algorithms.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
-from forte.utils.utils import get_class, create_class_with_kwargs
 
 __all__ = [
     "RandomSwapDataAugmentOp",
@@ -390,11 +390,11 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
             .. code-block:: python
 
                 {
-                    "type": "ForteAug.algorithms."
+                    "type": "fortex.forteaug.algorithms."
                     "dictionary_replacement_op.DictionaryReplacementOp",
                     "kwargs":{
                         "dictionary_class": (
-                            "ForteAug.algorithms.dictionary.WordnetDictionary"
+                            "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
                         ),
                         "prob": 1.0,
                         "lang": "eng",
@@ -413,11 +413,11 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
                 "ft.onto.base_ontology.Sentence": "auto_align",
             },
             "insertion_op_configs": {
-                "type": "ForteAug.algorithms."
+                "type": "fortex.forteaug.algorithms."
                 "dictionary_replacement_op.DictionaryReplacementOp",
                 "kwargs": {
                     "dictionary_class": (
-                        "ForteAug.algorithms.dictionary.WordnetDictionary"
+                        "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
                     ),
                     "prob": 1.0,
                     "lang": "eng",

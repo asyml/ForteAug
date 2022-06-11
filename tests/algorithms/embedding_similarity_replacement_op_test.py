@@ -26,10 +26,10 @@ from forte.data.multi_pack import MultiPack
 from forte.data.readers import StringReader
 from forte.data.selector import AllPackSelector
 from forte.pipeline import Pipeline
-from ForteAug.data_aug_processor import (
+from fortex.forteaug.data_aug_processor import (
     DataAugProcessor,
 )
-from ForteAug.algorithms.embedding_similarity_replacement_op import (
+from fortex.forteaug.algorithms.embedding_similarity_replacement_op import (
     EmbeddingSimilarityReplacementOp,
 )
 from forte.processors.misc import WhiteSpaceTokenizer
@@ -92,7 +92,7 @@ class TestEmbeddingSimilarityReplacementOp(unittest.TestCase):
         nlp.add(component=WhiteSpaceTokenizer(), selector=AllPackSelector())
 
         processor_config = {
-            "data_aug_op": "ForteAug.algorithms"
+            "data_aug_op": "fortex.forteaug.algorithms"
             ".embedding_similarity_replacement_op."
             "EmbeddingSimilarityReplacementOp",
             "data_aug_op_config": {
