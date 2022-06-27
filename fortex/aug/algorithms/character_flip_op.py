@@ -20,7 +20,7 @@ from typing import Tuple, Any, Dict, Union
 from forte.data.ontology import Annotation
 from forte.common.configuration import Config
 from forte.utils import create_import_error_msg
-from fortex.forteaug.algorithms.single_annotation_op import (
+from fortex.aug.base.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 

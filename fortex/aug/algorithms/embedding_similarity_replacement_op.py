@@ -19,7 +19,7 @@ import numpy as np
 from ft.onto.base_ontology import Annotation
 from forte.utils import create_import_error_msg
 from forte.common.configuration import Config
-from fortex.forteaug.algorithms.single_annotation_op import (
+from fortex.aug.base.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 

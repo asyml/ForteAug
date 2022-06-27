@@ -20,7 +20,7 @@ from forte.common.configuration import Config
 from forte.data.ontology import Annotation
 from forte.utils.utils import create_class_with_kwargs
 from forte.utils import create_import_error_msg
-from fortex.forteaug.algorithms.single_annotation_op import (
+from fortex.aug.base.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 
@@ -141,7 +141,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
                 .. code-block:: python
 
                     {
-                        "type": "fortex.forteaug.algorithms.sampler.UniformSampler",
+                        "type": "fortex.aug.utils.sampler.UniformSampler",
                         "kwargs":{
                             "sample": ["apple", "banana", "orange"]
                         }
@@ -150,7 +150,7 @@ class DistributionReplacementOp(SingleAnnotationAugmentOp, Configurable):
         return {
             "prob": 0.1,
             "sampler_config": {
-                "type": "fortex.forteaug.algorithms.sampler.UniformSampler",
+                "type": "fortex.aug.utils.sampler.UniformSampler",
                 "kwargs": {"sampler_data": []}
                 # "sampler_data": [],
             },

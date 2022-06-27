@@ -18,7 +18,7 @@ import unittest
 
 from ft.onto.base_ontology import Token
 from forte.data.data_pack import DataPack
-from fortex.forteaug.algorithms.distribution_replacement_op import (
+from fortex.aug.algorithms.distribution_replacement_op import (
     DistributionReplacementOp,
 )
 
@@ -42,7 +42,7 @@ class TestDistributionReplacementOp(unittest.TestCase):
         configs = {
             "prob": 1.0,
             "sampler_config": {
-                "type": "fortex.forteaug.algorithms.sampler.UniformSampler",
+                "type": "fortex.aug.utils.sampler.UniformSampler",
                 "kwargs": {"sampler_data": self.word_list},
             },
         }
@@ -53,7 +53,7 @@ class TestDistributionReplacementOp(unittest.TestCase):
         configs = {
             "prob": 0,
             "sampler_config": {
-                "type": "fortex.forteaug.algorithms.sampler.UniformSampler",
+                "type": "fortex.aug.utils.sampler.UniformSampler",
                 "kwargs": {"sampler_data": self.word_list},
             },
         }
@@ -64,7 +64,7 @@ class TestDistributionReplacementOp(unittest.TestCase):
         configs = {
             "prob": 1.0,
             "sampler_config": {
-                "type": "fortex.forteaug.algorithms.sampler.UnigramSampler",
+                "type": "fortex.aug.utils.sampler.UnigramSampler",
                 "kwargs": {"sampler_data": self.word_dict},
             },
         }
@@ -75,7 +75,7 @@ class TestDistributionReplacementOp(unittest.TestCase):
         configs = {
             "prob": 0.5,
             "sampler_config": {
-                "type": "fortex.forteaug.algorithms.sampler.UnigramSampler",
+                "type": "fortex.aug.utils.sampler.UnigramSampler",
                 "kwargs": {"sampler_data": self.word_dict},
             },
         }

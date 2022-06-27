@@ -18,7 +18,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     license="Apache License Version 2.0",
     packages=setuptools.find_namespace_packages(
-        include=['fortex.forteaug', 'ftx.*'],
+        include=['fortex.aug', 'ftx.*'],
         exclude=["scripts*", "examples*", "tests*"]
     ),
     namespace_packages=["fortex"],
@@ -27,7 +27,6 @@ setuptools.setup(
         'forte~=0.2.0',
         "sortedcontainers>=2.1.0",
         "numpy>=1.16.6",
-        "jsonpickle>=1.4",
         "pyyaml>=5.4",
         "smart-open>=1.8.4",
         "typed_astunparse>=2.1.4",
@@ -42,6 +41,8 @@ setuptools.setup(
         "texar-pytorch>=0.1.4",
         "tensorflow>=1.15.0",
         "requests",
+        "transformers>=4.15.0",
+        "nltk",
     ],
     extras_require={
         "test": [
@@ -49,8 +50,6 @@ setuptools.setup(
             "testfixtures",
             "testbook",
             "termcolor",
-            "transformers>=4.15.0",
-            "nltk",
         ]
     },
 )

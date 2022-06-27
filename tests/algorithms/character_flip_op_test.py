@@ -19,7 +19,7 @@ import random
 import unittest
 from forte.data.data_pack import DataPack
 from ft.onto.base_ontology import Token
-from fortex.forteaug.algorithms.character_flip_op import (
+from fortex.aug.algorithms.character_flip_op import (
     CharacterFlipOp,
 )
 

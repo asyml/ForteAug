@@ -23,9 +23,9 @@ from forte.pipeline import Pipeline
 from forte.data.multi_pack import MultiPack
 from forte.data.readers import StringReader
 from forte.data.caster import MultiPackBoxer
-from fortex.forteaug.data_aug_processor import DataAugProcessor
 from forte.processors.misc import WhiteSpaceTokenizer
 from ft.onto.base_ontology import Token
+from fortex.aug.data_aug_processor import DataAugProcessor
 
 from ddt import ddt, data, unpack
 
@@ -79,7 +79,7 @@ class TestEDADataAugmentProcessor(unittest.TestCase):
     def test_random_swap(self, texts, expected_outputs, expected_tokens):
 
         swap_config = {
-            "data_aug_op": "fortex.forteaug.algorithms.eda_ops.RandomSwapDataAugmentOp"
+            "data_aug_op": "fortex.aug.algorithms.eda_ops.RandomSwapDataAugmentOp"
         }
 
         self.nlp.add(component=DataAugProcessor(), config=swap_config)
@@ -131,7 +131,7 @@ class TestEDADataAugmentProcessor(unittest.TestCase):
     def test_random_insert(self, texts, expected_outputs, expected_tokens):
 
         insert_config = {
-            "data_aug_op": "fortex.forteaug.algorithms.eda_ops.RandomInsertionDataAugmentOp"
+            "data_aug_op": "fortex.aug.algorithms.eda_ops.RandomInsertionDataAugmentOp"
         }
 
         self.nlp.add(component=DataAugProcessor(), config=insert_config)
@@ -172,7 +172,7 @@ class TestEDADataAugmentProcessor(unittest.TestCase):
     def test_random_delete(self, texts, expected_outputs, expected_tokens):
 
         insert_config = {
-            "data_aug_op": "fortex.forteaug.algorithms.eda_ops.RandomDeletionDataAugmentOp",
+            "data_aug_op": "fortex.aug.algorithms.eda_ops.RandomDeletionDataAugmentOp",
             "data_aug_op_config": {"alpha": 0.5},
         }
 

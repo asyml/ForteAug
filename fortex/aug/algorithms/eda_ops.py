@@ -26,7 +26,7 @@ from forte.common.configuration import Config
 from forte.data.data_pack import DataPack
 from forte.data.ontology import Annotation
 from forte.utils.utils import get_class, create_class_with_kwargs
-from fortex.forteaug.algorithms.base_data_augmentation_op import (
+from fortex.aug.base.base_data_augmentation_op import (
     BaseDataAugmentationOp,
 )
 
@@ -390,11 +390,11 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
             .. code-block:: python
 
                 {
-                    "type": "fortex.forteaug.algorithms."
+                    "type": "fortex.aug.algorithms."
                     "dictionary_replacement_op.DictionaryReplacementOp",
                     "kwargs":{
                         "dictionary_class": (
-                            "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
+                            "fortex.aug.utils.dictionary.WordnetDictionary"
                         ),
                         "prob": 1.0,
                         "lang": "eng",
@@ -413,11 +413,11 @@ class RandomInsertionDataAugmentOp(BaseDataAugmentationOp):
                 "ft.onto.base_ontology.Sentence": "auto_align",
             },
             "insertion_op_configs": {
-                "type": "fortex.forteaug.algorithms."
+                "type": "fortex.aug.algorithms."
                 "dictionary_replacement_op.DictionaryReplacementOp",
                 "kwargs": {
                     "dictionary_class": (
-                        "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
+                        "fortex.aug.utils.dictionary.WordnetDictionary"
                     ),
                     "prob": 1.0,
                     "lang": "eng",

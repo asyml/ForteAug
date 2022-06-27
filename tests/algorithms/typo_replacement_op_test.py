@@ -18,7 +18,7 @@ Unit tests for dictionary word replacement op.
 import unittest
 from forte.data.data_pack import DataPack
 from ft.onto.base_ontology import Token
-from fortex.forteaug.algorithms.typo_replacement_op import (
+from fortex.aug.algorithms.typo_replacement_op import (
     TypoReplacementOp,
 )
 

@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from fortex.forteaug.base_data_augment_processor import *
+from fortex.aug.algorithms.distribution_replacement_op import *

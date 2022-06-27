@@ -17,7 +17,7 @@ from typing import Tuple, Union, Dict, Any
 from forte.common.configuration import Config
 from forte.utils.utils import create_class_with_kwargs
 from ft.onto.base_ontology import Token
-from fortex.forteaug.algorithms.single_annotation_op import (
+from fortex.aug.base.single_annotation_op import (
     SingleAnnotationAugmentOp,
 )
 
@@ -79,7 +79,7 @@ class DictionaryReplacementOp(SingleAnnotationAugmentOp):
                 The language of the text.
         """
 
-        dict_name = "fortex.forteaug.algorithms.dictionary.WordnetDictionary"
+        dict_name = "fortex.aug.utils.dictionary.WordnetDictionary"
         return {
             "dictionary_class": dict_name,
             "prob": 0.5,
