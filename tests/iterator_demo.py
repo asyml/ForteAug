@@ -56,56 +56,46 @@ class TestIterator(unittest.TestCase):
         self.assertEqual(len(self.test._augment_pool), 2)
 
         self.test.aug_with("char_flip", configs1)
-        self.assertEqual(len(self.test._augment_pool), 4)
+        self.assertEqual(len(self.test._augment_pool), 3)
 
-        origin_token = list(next(self.test).get("ft.onto.base_ontology.Token"))
+        ops, data = next(self.test)
+        origin_token = list(data.get("ft.onto.base_ontology.Token"))
         expected_tokens = [
             ["auxiliary"],
             ["colleague"],
             ["apparent"],
         ]
+        self.assertEqual(ops, 'original_data')
         for orig, exp in zip(origin_token, expected_tokens):
             self.assertIn(orig.text, exp)
 
         # typo aug
+        ops, data = next(self.test)
         augmented_tokens = list(
-            next(self.test).get("ft.onto.base_ontology.Token")
+            data.get("ft.onto.base_ontology.Token")
         )
         expected_tokens = [
             ["auxilliary"],
             ["collegue"],
             ["aparent"],
         ]
+        self.assertEqual(ops, 'typo_replace')
         for aug, exp in zip(augmented_tokens, expected_tokens):
             self.assertIn(aug.text, exp)
 
         # char_flip aug
+        ops, data = next(self.test)
         augmented_tokens = list(
-            next(self.test).get("ft.onto.base_ontology.Token")
+            data.get("ft.onto.base_ontology.Token")
         )
         expected_tokens = [
             ["au)(1|_iary"],
             ["co1l3a9ue"],
             ["app4rent"],
         ]
+        self.assertEqual(ops, 'char_flip')
         for aug, exp in zip(augmented_tokens, expected_tokens):
             self.assertIn(aug.text, exp)
-
-        # typo + char_flip aug
-        augmented_tokens = list(
-            next(self.test).get("ft.onto.base_ontology.Token")
-        )
-        expected_tokens = [
-            ["auxil7iary"],
-            ["col!3gu3"],
-            ["apaI2ent"],
-        ]
-        for aug, exp in zip(augmented_tokens, expected_tokens):
-            self.assertIn(aug.text, exp)
-
-        self.assertEqual(
-            self.test._augmented_ops, ["typo_replace", "char_flip"]
-        )
 
 
 if __name__ == "__main__":

@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from fortex.aug.data_aug_processor import *
+__version__ = "0.0.0"
