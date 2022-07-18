@@ -44,6 +44,7 @@ from fortex.aug.algorithms.back_translation_op import BackTranslationOp
 
 # tokenizer = AutoTokenizer.from_pretrained("textattack/bert-base-uncased-SST-2")
 
+
 class DataAugIterator(Configurable):
     def __init__(self, pack_iterator: Iterator[DataPack]):
         self._data_pack_iter: Iterator[DataPack] = pack_iterator
