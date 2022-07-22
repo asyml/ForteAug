@@ -25,6 +25,8 @@ from itertools import chain
 from forte.common.configurable import Configurable
 from forte.data.data_pack import DataPack
 from forte.common.configuration import Config
+from forte.data.readers import SST2Reader
+from forte.pipeline import Pipeline
 
 from ft.onto.base_ontology import Sentence
 
@@ -43,6 +45,16 @@ from fortex.aug.algorithms.back_translation_op import BackTranslationOp
 # from transformers import AutoTokenizer
 
 # tokenizer = AutoTokenizer.from_pretrained("textattack/bert-base-uncased-SST-2")
+
+def IterPrep(task: str, data_path: str):
+    pipeline = Pipeline()
+    if task == 'sst':
+        reader = SST2Reader()
+    else:
+        raise ValueError('Does not support this task now.')
+    pipeline.set_reader(reader)
+    pipeline.initialize()
+    return pipeline.process_dataset(data_path, 5)
 
 
 class DataAugIterator(Configurable):
