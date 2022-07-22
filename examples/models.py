@@ -17,6 +17,7 @@ from data_sst import ClassificationDataProcessor
 from torch.utils.data import DataLoader
 from transformers.optimization import AdamW
 from utils import train
+import os
 
 
 class AlbertModel(nn.Module):
@@ -127,7 +128,7 @@ class XlnetModel(nn.Module):
 def model_train(
     texts,
     labels,
-    target_dir="/Users/lechuanwang/Downloads/ForteAug/bertmodels",
+    target_dir="bertmodels",
     max_seq_len=50,
     epochs=3,
     batch_size=32,
@@ -143,7 +144,7 @@ def model_train(
     )
     train_loader = DataLoader(train_data, batch_size=batch_size)
 
-    device = torch.device("cpu")
+    device = torch.device("cuda")
     model = model.to(device)
     param_optimizer = list(model.named_parameters())
     no_decay = ["bias", "LayerNorm.bias", "LayerNorm.weight"]

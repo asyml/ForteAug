@@ -12,9 +12,11 @@ from models import model_train
 
 warnings.simplefilter(action="ignore", category=Warning)
 
-dataset_path = "/Users/lechuanwang/Downloads/ForteAug/sst"
+dataset_path = "sst"
+print('loading data...')
 data_packs: Iterable[DataPack] = IterPrep('sst', dataset_path)
 data_packs = iter(list(data_packs)[0:5])
+print('finish loading')
 
 configs1 = {
     "prob": 1.0,
@@ -22,7 +24,7 @@ configs1 = {
     "model_back": "fortex.aug.utils.machine_translator.MarianMachineTranslator",
     "src_language": "en",
     "tgt_language": "fr",
-    "device": "cpu",
+    "device": "cuda",
 }
 
 # configs2 = {
