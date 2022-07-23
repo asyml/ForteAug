@@ -21,7 +21,7 @@ from typing import (
     Any,
     Callable,
     List,
-    Tuple
+    Tuple,
 )
 from itertools import chain
 
@@ -49,19 +49,25 @@ from fortex.aug.algorithms.back_translation_op import BackTranslationOp
 
 # tokenizer = AutoTokenizer.from_pretrained("textattack/bert-base-uncased-SST-2")
 
+
 def IterPrep(task: str, data_path: str) -> Iterable[DataPack]:
     pipeline = Pipeline()
-    if task == 'sst':
+    if task == "sst":
         reader = SST2Reader()
     else:
-        raise ValueError('Does not support this task now.')
+        raise ValueError("Does not support this task now.")
     pipeline.set_reader(reader)
     pipeline.initialize()
     return pipeline.process_dataset(data_path, 5)
 
 
 class DataAugIterator(Configurable):
-    def __init__(self, pack_iterator: Iterator[DataPack], process_func: Callable[[DataPack, Entry], Tuple[List, List]], context: Entry = Sentence):
+    def __init__(
+        self,
+        pack_iterator: Iterator[DataPack],
+        process_func: Callable[[DataPack, Entry], Tuple[List, List]],
+        context: Entry = Sentence,
+    ):
         self._data_pack_iter: Iterator[DataPack] = pack_iterator
         self._process = process_func
         self._context = context
@@ -147,4 +153,6 @@ class DataAugIterator(Configurable):
         return self
 
     def __next__(self):
-        return next(self.ops), self._process(next(self._data_pack_iter), self._context)
+        return next(self.ops), self._process(
+            next(self._data_pack_iter), self._context
+        )

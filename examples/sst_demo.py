@@ -14,10 +14,11 @@ from models import model_train
 warnings.simplefilter(action="ignore", category=Warning)
 
 dataset_path = "sst"
-print('loading data...')
-data_packs: Iterable[DataPack] = IterPrep('sst', dataset_path)
-data_packs = iter(list(data_packs)[0:5])
-print('finish loading')
+print("loading data...")
+data_packs: Iterable[DataPack] = IterPrep("sst", dataset_path)
+# use small subsets
+# data_packs = iter(list(data_packs)[0:5])
+print("finish loading")
 
 configs1 = {
     "prob": 1.0,
@@ -60,6 +61,7 @@ def get_label(pack: DataPack, context: Entry = Sentence) -> Tuple[List, List]:
         l.append(s.sentiment)
     return t, l
 
+
 da_iter = DataAugIterator(data_packs, get_label, Sentence)
 da_iter.aug_with("back_trans", configs1)
 # da_iter.aug_with("mix_up", configs2, data_pack_node_weighting, data_pack_random_node)
@@ -69,7 +71,8 @@ da_iter.aug_with("back_trans", configs1)
 # the original data and back translation augmented data.
 texts = []
 labels = []
-for i, (augment_steps, text, label) in enumerate(da_iter):
+
+for i, (augment_steps, (text, label)) in enumerate(da_iter):
     if augment_steps == "original_data":
         texts.extend(text)
         labels.extend(label)

@@ -125,6 +125,7 @@ class XlnetModel(nn.Module):
         probabilities = nn.functional.softmax(logits, dim=-1)
         return loss, logits, probabilities
 
+
 def model_train(
     texts,
     labels,
