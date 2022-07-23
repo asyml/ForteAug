@@ -1,10 +1,11 @@
 import warnings
 import random
-from typing import Iterable
+from typing import Iterable, List, Tuple
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 from forte.data.data_pack import DataPack
+from forte.data.ontology.core import Entry
 from ft.onto.base_ontology import Sentence
 from fortex.aug.data.data_aug_iterator import DataAugIterator, IterPrep
 
@@ -50,16 +51,16 @@ configs1 = {
 
 # get all labels for all sentence.
 # Since labels/sentiments are not stored in Sentence, we manually retrieve them.
-def get_label(pack):
+def get_label(pack: DataPack, context: Entry = Sentence) -> Tuple[List, List]:
     l = []
     t = []
-    sentences = list(pack.get(Sentence))
+    sentences = list(pack.get(context))
     for s in sentences:
         t.append(s.text)
         l.append(s.sentiment)
     return t, l
 
-da_iter = DataAugIterator(data_packs)
+da_iter = DataAugIterator(data_packs, get_label, Sentence)
 da_iter.aug_with("back_trans", configs1)
 # da_iter.aug_with("mix_up", configs2, data_pack_node_weighting, data_pack_random_node)
 
@@ -68,13 +69,11 @@ da_iter.aug_with("back_trans", configs1)
 # the original data and back translation augmented data.
 texts = []
 labels = []
-for i, (augment_steps, pack) in enumerate(da_iter):
+for i, (augment_steps, text, label) in enumerate(da_iter):
     if augment_steps == "original_data":
-        text, label = get_label(pack)
         texts.extend(text)
         labels.extend(label)
     elif augment_steps == "back_trans":
-        text, label = get_label(pack)
         texts.extend(text)
         labels.extend(label)
 

@@ -14,11 +14,14 @@
 
 from typing import (
     Dict,
+    Iterable,
     Iterator,
     Optional,
     Union,
     Any,
     Callable,
+    List,
+    Tuple
 )
 from itertools import chain
 
@@ -27,7 +30,7 @@ from forte.data.data_pack import DataPack
 from forte.common.configuration import Config
 from forte.data.readers import SST2Reader
 from forte.pipeline import Pipeline
-
+from forte.data.ontology.core import Entry
 from ft.onto.base_ontology import Sentence
 
 from fortex.aug.data.mix_up_dataset import (
@@ -46,7 +49,7 @@ from fortex.aug.algorithms.back_translation_op import BackTranslationOp
 
 # tokenizer = AutoTokenizer.from_pretrained("textattack/bert-base-uncased-SST-2")
 
-def IterPrep(task: str, data_path: str):
+def IterPrep(task: str, data_path: str) -> Iterable[DataPack]:
     pipeline = Pipeline()
     if task == 'sst':
         reader = SST2Reader()
@@ -58,8 +61,10 @@ def IterPrep(task: str, data_path: str):
 
 
 class DataAugIterator(Configurable):
-    def __init__(self, pack_iterator: Iterator[DataPack]):
+    def __init__(self, pack_iterator: Iterator[DataPack], process_func: Callable[[DataPack, Entry], Tuple[List, List]], context: Entry = Sentence):
         self._data_pack_iter: Iterator[DataPack] = pack_iterator
+        self._process = process_func
+        self._context = context
         self._origin_data_pack = list(self._data_pack_iter).copy()
         self._augment_pool = self._origin_data_pack.copy()
         self._augmented_ops = ["original_data"] * len(self._origin_data_pack)
@@ -142,4 +147,4 @@ class DataAugIterator(Configurable):
         return self
 
     def __next__(self):
-        return next(self.ops), next(self._data_pack_iter)
+        return next(self.ops), self._process(next(self._data_pack_iter), self._context)
