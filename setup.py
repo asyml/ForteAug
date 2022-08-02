@@ -10,10 +10,10 @@ if sys.version_info < (3, 6):
     sys.exit("Python>=3.6 is required by ForteAug.")
 
 setuptools.setup(
-    name="forte.aug",
-    version='0.1.0',
+    name="ForteAug",
+    version='0.0.1',
     url="https://github.com/asyml/ForteAug",
-    description="NLP pipeline framework for data augmentation.",
+    description="A rich Data Augmentation library supporting structured NLP data.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="Apache License Version 2.0",
@@ -25,19 +25,6 @@ setuptools.setup(
     include_package_data=True,
     install_requires=[
         'forte~=0.2.0',
-        "sortedcontainers>=2.1.0",
-        "numpy>=1.16.6",
-        "pyyaml>=5.4",
-        "smart-open>=1.8.4",
-        "typed_astunparse>=2.1.4",
-        "funcsigs>=1.0.2",
-        "typed_ast>=1.5.0",
-        "jsonschema>=3.0.2",
-        'typing>=3.7.4;python_version<"3.5"',
-        "typing-inspect>=0.6.0",
-        'dataclasses~=0.7;python_version<"3.7"',
-        'importlib-resources>=5.1.4;python_version<"3.7"',
-        "asyml-utilities",
         "texar-pytorch>=0.1.4",
         "tensorflow>=1.15.0",
         "requests",
