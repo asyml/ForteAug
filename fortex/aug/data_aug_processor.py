@@ -129,7 +129,7 @@ class DataAugProcessor(MultiPackProcessor):
         if is_link:
             entry = cast(MultiPackLink, entry)
 
-            new_link_parent, new_link_child = new_children
+            new_link_parent, new_link_child = new_children[0:2]
 
             new_entry = type(entry)(
                 multi_pack, new_link_parent, new_link_child  # type: ignore
