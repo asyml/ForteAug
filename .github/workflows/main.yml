@@ -88,3 +88,6 @@ jobs:
       - name: Test with pytest and run coverage
         run: |
           coverage run -m pytest tests
+      - name: Upload coverage
+        run: |
+          codecov
