@@ -85,11 +85,9 @@ class DataAugProcessor(MultiPackProcessor):
         This function copies a MultiPackLink/MultiPackGroup in the multipack.
         It could be used in tasks such as text generation, where
         MultiPackLink is used to align the source and target.
-
         Args:
             entry: The MultiPackLink/MultiPackGroup to copy.
             multi_pack: The multi_pack contains the input entry.
-
         Returns:
             A bool value indicating whether the copy happens.
         """
@@ -129,7 +127,7 @@ class DataAugProcessor(MultiPackProcessor):
         if is_link:
             entry = cast(MultiPackLink, entry)
 
-            new_link_parent, new_link_child = new_children[0:2]
+            new_link_parent, new_link_child = new_children
 
             new_entry = type(entry)(
                 multi_pack, new_link_parent, new_link_child  # type: ignore
@@ -157,11 +155,9 @@ class DataAugProcessor(MultiPackProcessor):
         modifies the input in-place. The subclasses should override
         this function to implement other data augmentation methods, such
         as Easy Data Augmentation.
-
         Args:
             input_pack: The input MultiPack.
             aug_pack_names: The packs names for DataPacks to be augmented.
-
         Returns:
             A boolean value indicating if the data augmentation was
             sucessful or not.
@@ -243,7 +239,8 @@ class DataAugProcessor(MultiPackProcessor):
                 The data augmentation Op for the processor.
                 It should be a full qualified class name.
                 Example:
-                    "fortex.aug.algorithms.character_flip_op.CharacterFlipOp"
+                    "forte.processors.data_augment.algorithms.
+                    text_replacement_op.TextReplacementOp"
             - data_aug_op_config:
                 The configuration for data augmentation Op.
                 Example:
