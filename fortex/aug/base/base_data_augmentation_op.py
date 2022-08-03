@@ -532,7 +532,6 @@ class BaseDataAugmentationOp(Configurable):
             orig_annos: Iterable[Annotation] = data_pack.get(class_to_copy)
 
             for orig_anno in orig_annos:
-                old_sent = orig_anno.sentiment
                 # Dealing with insertion/deletion only for augment_entry.
                 while (
                     insert_ind < len(new_entries[entry_to_copy])
@@ -589,7 +588,6 @@ class BaseDataAugmentationOp(Configurable):
                         "end": span_new_end,
                     },
                 )
-                new_anno.sentiment = old_sent
                 new_pack.add_entry(new_anno)
                 entry_map[orig_anno.tid] = new_anno.tid
 
