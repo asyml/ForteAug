@@ -127,10 +127,10 @@ class DataAugProcessor(MultiPackProcessor):
         if is_link:
             entry = cast(MultiPackLink, entry)
 
-            (
+            (  # pylint: disable=unbalanced-tuple-unpacking
                 new_link_parent,
                 new_link_child,
-            ) = new_children  # pylint: disable=unbalanced-tuple-unpacking
+            ) = new_children
 
             new_entry = type(entry)(
                 multi_pack, new_link_parent, new_link_child  # type: ignore
