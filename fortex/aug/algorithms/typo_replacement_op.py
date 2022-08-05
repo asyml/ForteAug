@@ -87,10 +87,7 @@ class TypoReplacementOp(SingleAnnotationAugmentOp):
             self.dict_path = configs["dict_path"]
         else:
             # default typo dictionary
-            self.dict_path = (
-                "https://raw.githubusercontent.com/wanglec/"
-                + "temporaryJson/main/misspelling.json"
-            )
+            self.dict_path = "fortex/aug/utils/misspelling.json"
         if configs["typo_generator"] == "uniform":
             self.typo_generator = UniformTypoGenerator(self.dict_path)
         else:

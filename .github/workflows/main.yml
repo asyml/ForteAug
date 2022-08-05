@@ -60,6 +60,9 @@ jobs:
       - name: Format check with Black
         run: |
           black --line-length 80 --check fortex/
+      - name: Install Forte
+        run: |
+          pip install --progress-bar off Forte
       - name: Install deep learning frameworks
         run: |
           pip install --progress-bar off torch==${{ matrix.torch-version }}
